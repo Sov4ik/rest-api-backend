@@ -1,5 +1,6 @@
 package springjwt.service;
 
+import org.springframework.security.core.GrantedAuthority;
 import springjwt.models.ERole;
 import springjwt.models.Role;
 import springjwt.models.User;
@@ -59,7 +60,7 @@ public class AuthService {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
+                .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(new JwtResponse(jwt,
@@ -92,20 +93,20 @@ public class AuthService {
 
         if (strRoles == null) {
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found. 1"));
             roles.add(userRole);
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
                     case "admin":
                         Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found. 2"));
                         roles.add(adminRole);
 
                         break;
                     case "mod":
                         Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found. 3"));
                         roles.add(modRole);
 
                         break;
@@ -113,6 +114,7 @@ public class AuthService {
                         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(userRole);
+
                 }
             });
         }
