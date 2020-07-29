@@ -1,5 +1,6 @@
 package springjwt.controllers;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import springjwt.models.Book;
 import springjwt.service.BookService;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -33,12 +34,14 @@ public class BookController {
     }
 
     @PostMapping("/books")
+    @PreAuthorize("hasRole('ADMIN')")
     public boolean createBook(@Valid @RequestBody Book book) {
         bookService.save(book);
         return true;
     }
 
     @PutMapping("/books/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public boolean updateBook(@PathVariable(value = "id") Long bookId,
                                                    @Valid @RequestBody Book bookDetails) throws ResourceNotFoundException {
         bookService.updateBook(bookId, bookDetails);
@@ -46,6 +49,7 @@ public class BookController {
     }
 
     @DeleteMapping("/books/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public boolean deleteBook(@PathVariable(value = "id") Long bookId){
         bookService.deleteBook(bookId);
         return true;

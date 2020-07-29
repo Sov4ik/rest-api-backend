@@ -1,5 +1,6 @@
 package springjwt.service;
 
+import org.springframework.transaction.annotation.Transactional;
 import springjwt.models.Book;
 import springjwt.repository.BookRepository;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -24,6 +25,7 @@ public class BookService {
         return bookRepository.findAll();
     }
 
+    @Transactional
     public ResponseEntity<Book> getBookById(Long bookId){
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new ResourceNotFoundException("Book not found for this id :: " + bookId));
@@ -34,6 +36,7 @@ public class BookService {
         return bookRepository.save(book);
     }
 
+    @Transactional
     public ResponseEntity<Book> updateBook(Long bookId,
                                                    Book bookDetails){
         Book book = bookRepository.findById(bookId)
@@ -47,6 +50,8 @@ public class BookService {
         return ResponseEntity.ok(updatedEmployee);
     }
 
+
+    @Transactional
     public Map<String, Boolean> deleteBook(@PathVariable(value = "id") Long bookId)
         throws ResourceNotFoundException {
             Book book = bookRepository.findById(bookId)
