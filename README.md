@@ -1,4 +1,4 @@
-# Test jwtApplication with Spring Boot 2 & Hibernate ORM
+# Book Shop jwtApplication with Spring Boot 2 & Hibernate ORM
 
 ## About
 This is a test application that shows how to work with:
