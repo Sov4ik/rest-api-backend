@@ -1,4 +1,4 @@
-# Test jwtApplication with Spring Boot 2 & Hibernate ORM
+# Book Shop jwtApplication with Spring Boot & Hibernate ORM
 
 ## About
 This is a test application that shows how to work with:
@@ -76,6 +76,5 @@ INSERT INTO roles(name) VALUES('ROLE_USER');
 INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
 INSERT INTO roles(name) VALUES('ROLE_ADMIN');
 ```
-
 ### Generating password hashes for new users
 I'm using [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) to encode passwords.
