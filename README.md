@@ -75,7 +75,7 @@ mvn spring-boot:run
 INSERT INTO roles(name) VALUES('ROLE_USER');
 INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
 INSERT INTO roles(name) VALUES('ROLE_ADMIN');
-### Generating password hashes for new users
 ```
 
+### Generating password hashes for new users
 I'm using [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) to encode passwords.

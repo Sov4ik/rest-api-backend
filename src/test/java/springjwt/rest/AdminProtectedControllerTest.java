@@ -13,6 +13,7 @@ import static springjwt.util.LoginUtils.getTokenForLogin;
 public class AdminProtectedControllerTest extends AbstractControllerTest {
 
     @Test
+    @Ignore
     public void getAdminProtectedEndpointForUser() throws Exception {
         final String token = getTokenForLogin("username", "pa55w0[d", getMockMvc());
 
@@ -23,6 +24,7 @@ public class AdminProtectedControllerTest extends AbstractControllerTest {
     }
 
     @Test
+    @Ignore
     public void checkAccessForUser() throws Exception {
         final String token = getTokenForLogin("username", "pa55w0[d", getMockMvc());
 
@@ -45,6 +47,7 @@ public class AdminProtectedControllerTest extends AbstractControllerTest {
     }
 
     @Test
+    @Ignore
     public void getAdminProtectedEndpointForAnonymous() throws Exception {
         getMockMvc().perform(get("/api/test/admin")
                 .contentType(MediaType.APPLICATION_JSON))

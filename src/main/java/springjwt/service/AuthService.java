@@ -86,6 +86,13 @@ public class AuthService {
         }
 
         // Create new user's account
+        createNewUser(signUpRequest);
+
+        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+
+    private void createNewUser(SignupRequest signUpRequest){
+
         User user = new User(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()));
@@ -123,7 +130,5 @@ public class AuthService {
 
         user.setRoles(roles);
         userRepository.save(user);
-
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 }

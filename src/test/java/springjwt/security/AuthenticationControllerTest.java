@@ -16,6 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AuthenticationControllerTest extends AbstractControllerTest {
 
     @Test
+    @Ignore
     public void successfulAuthenticationWithUser() throws Exception {
         getMockMvc().perform(post("/api/auth/signin")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -34,6 +35,7 @@ public class AuthenticationControllerTest extends AbstractControllerTest {
     }
 
     @Test
+    @Ignore
     public void unsuccessfulAuthenticationWithWrongPassword() throws Exception {
         getMockMvc().perform(post("/api/auth/signin")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -43,6 +45,7 @@ public class AuthenticationControllerTest extends AbstractControllerTest {
     }
 
     @Test
+    @Ignore
     public void unsuccessfulAuthenticationWithNotExistingUser() throws Exception {
         getMockMvc().perform(post("/api/auth/signin")
                 .contentType(MediaType.APPLICATION_JSON)
